@@ -7,7 +7,7 @@ class OnReady(commands.Cog):
 
     @commands.Cog.listener('on_ready')
     async def on_ready(self):
-        print(f'We have logged in as {self.bot.user}')
+        print(f'Logged in as {self.user} (ID: {self.user.id})')
 
 
 async def setup(bot):
