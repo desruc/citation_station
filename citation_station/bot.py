@@ -14,3 +14,14 @@ class Bot(commands.Bot):
                     print(f"Loaded extension '{filename}'")
                 except:
                     print(f"Failed to load extension {filename}")
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print(f'Logged in as {self.user} (ID: {self.user.id})')
+
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.author.bot:
+            return
+        await self.process_commands(message)
