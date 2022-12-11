@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "citation-station"
+name = "citation_station"
 version = "0.1.0"
 description = ""
 authors = ["James Cameron <36631337+desruc@users.noreply.github.com>"]
