@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  citation_station:
+    container_name: citation_station_bot
+    build:
+      context: .
+      args:
+        DISCORD_TOKEN: ${DISCORD_TOKEN}
+        CHANNEL_ID: ${CHANNEL_ID}

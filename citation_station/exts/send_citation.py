@@ -7,7 +7,7 @@ from citation_station.bot import Bot
 from citation_station.utils.quote import get_quote
 
 # This will be in UTC time while in a docker container
-HOUR_TO_SEND = 9
+HOUR_TO_SEND = int(os.getenv("HOUR_TO_SEND")) if os.getenv("HOUR_TO_SEND") is not None else 23 # 11pm UTC = 9am AEST
 
 
 class SendCitation(commands.Cog):
