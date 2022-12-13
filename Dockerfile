@@ -14,6 +14,8 @@ ENV POETRY_HOME=/opt/poetry
 ENV POETRY_VENV=/opt/poetry-venv
 ENV POETRY_CACHE_DIR=/opt/.cache
 
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED 1
 
 # Install poetry separated from system interpreter
 RUN python3 -m venv $POETRY_VENV \

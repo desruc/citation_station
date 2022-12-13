@@ -12,8 +12,8 @@ class Bot(commands.Bot):
                 try:
                     await self.load_extension(f'citation_station.exts.{filename[:-3]}')
                     print(f"Loaded extension '{filename}'")
-                except:
-                    print(f"Failed to load extension {filename}")
+                except Exception as e:
+                    print(f"Failed to load extension {filename}. Error: {e}")
 
     @commands.Cog.listener()
     async def on_ready(self):

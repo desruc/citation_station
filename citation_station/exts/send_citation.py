@@ -7,7 +7,7 @@ from citation_station.bot import Bot
 from citation_station.utils.quote import get_quote
 
 # This will be in UTC time while in a docker container
-HOUR_TO_SEND = int(os.getenv("HOUR_TO_SEND")) if os.getenv("HOUR_TO_SEND") is not None else 23 # 11pm UTC = 9am AEST
+FALLBACK_HOUR_TO_SEND = 23  # 11pm UTC = 9am AEST
 
 
 class SendCitation(commands.Cog):
@@ -22,7 +22,7 @@ class SendCitation(commands.Cog):
     async def send_daily_citation(self):
         now = datetime.datetime.now()
 
-        if (self.bot.is_ready() and now.hour == HOUR_TO_SEND):
+        if (self.bot.is_ready() and now.hour == get_hour_to_send()):
             try:
                 channel = self.bot.get_channel(int(os.getenv('CHANNEL_ID')))
                 quote = await get_quote()
@@ -31,6 +31,14 @@ class SendCitation(commands.Cog):
                 await channel.send(embed=embed)
             except:
                 print("Failed to get channel")
+
+
+def get_hour_to_send():
+    hour_to_send = os.getenv('HOUR_TO_SEND')
+    if hour_to_send:
+        return int(hour_to_send)
+    else:
+        return FALLBACK_HOUR_TO_SEND
 
 
 def get_embed(quote: str, author: str):
