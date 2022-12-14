@@ -10,6 +10,7 @@ packages = [{include = "citation_station"}]
 python = "^3.11"
 discord-py = "^2.1.0"
 python-dotenv = "^0.21.0"
+apscheduler = "^3.9.1.post1"
 
 
 [build-system]

@@ -11,7 +11,6 @@ bot = Bot(command_prefix='!', intents=intents)
 
 
 async def main():
-    await bot.load_exts()
     await bot.start(os.getenv('DISCORD_TOKEN'))
 
 
