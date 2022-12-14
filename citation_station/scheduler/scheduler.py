@@ -17,7 +17,6 @@ class Scheduler():
     def start(self):
         print("Starting scheduler...")
         self.scheduler.start()
-        self.scheduler.print_jobs()  # This is just for debugging
 
     def load_jobs(self):
         print("Loading jobs...")
