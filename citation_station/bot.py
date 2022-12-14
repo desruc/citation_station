@@ -1,9 +1,12 @@
 import os
 from discord.ext import commands
 
+from citation_station.scheduler.scheduler import Scheduler
 
 class Bot(commands.Bot):
     def __init__(self, *args, **kwargs):
+        self.scheduler = Scheduler(self)
+
         super().__init__(*args, **kwargs)
 
     async def load_exts(self):
@@ -18,6 +21,7 @@ class Bot(commands.Bot):
     @commands.Cog.listener()
     async def on_ready(self):
         print(f'Logged in as {self.user} (ID: {self.user.id})')
+        self.scheduler.initialize()
 
 
     @commands.Cog.listener()
