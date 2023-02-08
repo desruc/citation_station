@@ -13,7 +13,6 @@ on:
   push:
     branches:
       - "main"
-      - "dockerhub"
 
 jobs:
   push_to_registry:
