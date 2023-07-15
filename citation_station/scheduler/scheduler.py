@@ -11,6 +11,7 @@ class Scheduler():
         self.bot = bot
 
     def initialize(self):
+        print("Initializing scheduler...")
         self.load_jobs()
         self.start()
 
