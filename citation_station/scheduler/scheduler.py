@@ -9,16 +9,24 @@ class Scheduler():
     def __init__(self, bot: commands.bot):
         self.scheduler = AsyncIOScheduler()
         self.bot = bot
+        self.job = None
 
     def initialize(self):
         print("Initializing scheduler...")
-        self.load_jobs()
+        self.cancel_job()
+        self.load_job()
         self.start()
 
     def start(self):
         print("Starting scheduler...")
-        self.scheduler.start()
+        if not self.scheduler.running:
+            self.scheduler.start()
 
-    def load_jobs(self):
-        print("Loading jobs...")
-        DailyCitationJob(self.bot).schedule(self.scheduler)
+    def load_job(self):
+        print("Loading job...")
+        self.job = DailyCitationJob(self.bot).schedule(self.scheduler)
+
+    def cancel_job(self):
+        if self.job:
+            self.scheduler.remove_job(self.job.id)
+            print("Job cancelled.")

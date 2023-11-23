@@ -15,9 +15,10 @@ class DailyCitationJob():
 
     def schedule(self, scheduler):
         print("Scheduling daily citation job...")
-        scheduler.add_job(self.send_daily_citation, CronTrigger(
+        job = scheduler.add_job(self.send_daily_citation, CronTrigger(
             year="*", month="*", day="*", hour=HOUR_TO_SEND, minute=0, second=0
         ))
+        return job
 
     async def send_daily_citation(self):
         if (self.bot.is_ready()):
